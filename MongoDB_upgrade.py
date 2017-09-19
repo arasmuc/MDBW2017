@@ -65,7 +65,6 @@ def getGroup(clu):
         r = requests.get('https://'+opsmgr+':'+port+'/api/public/v1.0/groups/byName/%s' % clu, auth=requests.auth.HTTPDigestAuth('%s' % user, '%s' % key), verify=False)
         r.raise_for_status()
         j = r.json()
-        #print j["id"]
         return j["id"]
     except requests.exceptions.RequestException as e:
         print e
@@ -95,7 +94,6 @@ def putJson(j):
 
 
 
-
 def ChangeVersion(opsmgr,port,ver):
     j=getJson()
     check=[]
@@ -114,7 +112,7 @@ def ChangeVersion(opsmgr,port,ver):
     for p in j["processes"]:
          p["version"] = ver
 #    for i in j["processes"]:
-#       i["featureCompatibilityVersion"]=str(float(ver[:3])-0.0)
+#       i["featureCompatibilityVersion"]=str(float(ver[:3])-0.2)
     putJson(j)
 
 
